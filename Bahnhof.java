@@ -1,7 +1,7 @@
 public class Bahnhof{
-    private Stack<Wagon> gleisA; 
-    private Stack<Wagon> gleisB; 
-    private Stack<Wagon> gleisC; 
+    public Stack<Wagon> gleisA; 
+    public Stack<Wagon> gleisB; 
+    public Stack<Wagon> gleisC; 
 public Bahnhof() {
     gleisA = new Stack<Wagon>(); 
     gleisB = new Stack<Wagon>(); 
@@ -30,5 +30,15 @@ public void vonCzuA() {
 public void vonCzuB() {
     gleisB.push(gleisC.top()); 
     gleisC.pop(); 
+}
+public void rangieren() {
+    while(!gleisA.isEmpty()) {
+        Wagon temp = gleisA.top(); 
+        gleisA.pop(); 
+        while(!gleisC.isEmpty() && gleisC.top().getGewicht() > temp.getGewicht()) {
+            vonCzuA(); 
+        }
+        gleisC.push(temp);
+    }
 }
 }
